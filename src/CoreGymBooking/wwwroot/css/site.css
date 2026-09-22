@@ -19,6 +19,7 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color: #f7f7f5;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -28,4 +29,64 @@ body {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
+}
+
+.navbar-brand {
+  font-weight: 700;
+}
+
+.home-intro,
+.class-list-header {
+  margin: 2.5rem 0 2rem;
+}
+
+.home-intro h1,
+.class-list-header h1 {
+  font-weight: 700;
+}
+
+.home-intro p,
+.class-list-header p {
+  color: #5f6368;
+  max-width: 42rem;
+}
+
+.class-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.class-card {
+  background: #ffffff;
+  border: 1px solid #deded9;
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.class-card h2 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.class-time {
+  color: #5f6368;
+  margin: 0.35rem 0 0;
+}
+
+.class-details {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  margin: 1rem 0 0;
+}
+
+.class-details dt {
+  color: #5f6368;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.class-details dd {
+  font-weight: 600;
+  margin: 0.2rem 0 0;
 }

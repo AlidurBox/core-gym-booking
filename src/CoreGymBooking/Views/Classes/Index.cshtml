@@ -1,0 +1,46 @@
+@model IReadOnlyList<CoreGymBooking.Models.TrainingClass>
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Kommande träningspass";
+    var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+}
+
+<section class="class-list-header">
+    <h1>Kommande träningspass</h1>
+    <p>Här visas de träningspass som går att planera inför just nu.</p>
+</section>
+
+@if (Model.Count == 0)
+{
+    <p class="text-muted">Det finns inga kommande träningspass att visa.</p>
+}
+else
+{
+    <div class="class-list">
+        @foreach (var trainingClass in Model)
+        {
+            <article class="class-card">
+                <div>
+                    <h2>@trainingClass.Title</h2>
+                    <p class="class-time">@trainingClass.StartsAt.ToString("dddd d MMMM yyyy, HH:mm", swedishCulture)</p>
+                </div>
+
+                <dl class="class-details">
+                    <div>
+                        <dt>Plats</dt>
+                        <dd>@trainingClass.Location</dd>
+                    </div>
+                    <div>
+                        <dt>Instruktör</dt>
+                        <dd>@trainingClass.Instructor</dd>
+                    </div>
+                    <div>
+                        <dt>Lediga platser</dt>
+                        <dd>@trainingClass.AvailableSpots</dd>
+                    </div>
+                </dl>
+            </article>
+        }
+    </div>
+}

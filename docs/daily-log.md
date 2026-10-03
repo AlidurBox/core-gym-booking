@@ -39,16 +39,17 @@ Konkret gjorde jag det här:
 - Gick igenom kraven för uppgiften och kundens funktionskrav.
 - Satte upp en Trello-board med listorna Backlog, To Do, In Progress, Testing
   och Done.
-- Skrev 12 user stories med acceptanskriterier och lade in dem som kort i
-  Trello.
+- Tog fram 12 user stories med acceptanskriterier och lade in dem i Trello via
+  Trello API. Codex användes för API-anropen och för att skapa korten och
+  checklistorna utifrån projektets planering.
 - Skapade ASP.NET Core MVC-projektet `CoreGymBooking`.
 - Skapade ett lokalt Git-repository och ett GitHub-repository
   (`AlidurBox/core-gym-booking`, privat).
 - Skapade feature-branchen `feature/class-list` och byggde den första
   MVP-funktionen där besökare kan se kommande träningspass.
 - Testade funktionen lokalt, commitade och öppnade PR #1.
-- Flyttade upp korten i Trello för de user stories som funktionen täcker,
-  efter att jag hade testat att den fungerade.
+- Flyttade de två user stories som klasslistan täcker till Done i Trello efter
+  att funktionen hade testats.
 
 **Vad jag implementerade:**
 
@@ -96,16 +97,13 @@ PR #1 "Add public upcoming class list" är öppen mot `main`.
 
 **Problem:**
 
-Projektet skapades i en mapp som Codex hade lagt upp med dagens datum i
-sökvägen. Det kändes osäkert att ha projektet liggande där, eftersom mappen är
-kopplad till en session och kan försvinna.
+Projektet låg först i en tillfällig arbetsmapp. Jag ville flytta arbetet till
+en permanent lokal projektmapp som jag själv hade kontroll över.
 
 **Lösning:**
 
-Jag klonade ner GitHub-repot till min egen projektmapp `~/projekt` och arbetar
-vidare därifrån. Eftersom allt redan var pushat låg ingenting kvar som bara
-fanns lokalt i den gamla mappen. Framåt sköter jag kod, Git och dokumentation
-från `~/projekt`, och Codex använder jag bara till Trello.
+Jag klonade GitHub-repot till `~/projekt` och fortsatte arbetet därifrån. Kod,
+Git och dokumentation hanteras där, medan Trello används som projektverktyg.
 
 **Reflektion:**
 
@@ -129,7 +127,7 @@ dagboken direkt efter varje arbetspass i stället för i efterhand.
 - Koppla på databas med EF Core och SQLite, och flytta in träningspassen där.
 - Efter det: registrering, inloggning och utloggning.
 
-**Bevis att spara:**
+**Bevis att samla in:**
 
 - Screenshot på Trello-boarden med listorna och korten.
 - Screenshot på branchlistan och commit-historiken i GitHub.

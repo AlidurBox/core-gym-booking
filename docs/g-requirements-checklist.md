@@ -1,0 +1,36 @@
+# Checklista för betyget G – Core Gym Club Bokningssystem
+
+Den här checklistan följer kraven för betyget Godkänt i projektet. Den visar
+vad som är klart, vad som pågår och vad som återstår, samt var beviset för
+varje krav finns.
+
+Statusvärden:
+
+- **Klar** – kravet är uppfyllt och det finns bevis.
+- **Pågår** – arbetet är påbörjat men inte färdigt.
+- **Ej klar** – inget arbete gjort ännu.
+
+## Checklista
+
+| Krav | Status | Bevis / vad som återstår |
+|---|---|---|
+| 1. Minst 10 relevanta user stories | Klar | `docs/user-stories.md` innehåller 12 user stories.<br>Alla har acceptanskriterier.<br>Samma stories finns som kort i Trello. |
+| 2. Minst ett aktivitetsdiagram | Ej klar | Inget ännu. Ska göras för flödet när en medlem bokar ett träningspass. |
+| 3. Minst ett sekvensdiagram | Ej klar | Inget ännu. Ska göras för samma flöde, alltså medlem bokar träningspass. |
+| 4. Använda agilt projektverktyg | Klar | Trello-board med listorna Backlog, To Do, In Progress, Testing och Done.<br>12 user stories ligger som kort.<br>Screenshots har tagits.<br>Två verifierade stories ligger i Done. |
+| 5. Git med egna branches och pull requests | Klar | Brancher: `feature/class-list`, `docs/project-documentation` och `feature/class-details`.<br>PR #1 mergad.<br>PR #3 mergad.<br>PR #2 fortfarande öppen för dokumentationen.<br>Screenshots finns från brancher och pull requests. |
+| 6. Leverera körbar MVP eller version regelbundet | Pågår | Första körbara versionen visade en lista över kommande träningspass.<br>Senare verifierad komplettering med klickbara träningspass och en detaljsida.<br>Build och körbar app har verifierats.<br>Återstår: fortsätta leverera körbara versioner under resten av projektet, så att kravet på regelbundna leveranser kan visas i sin helhet. |
+| 7. Löpande projektdokumentation | Pågår | `docs/daily-log.md` och `docs/user-stories.md`.<br>Dokumentationen uppdateras under verkliga arbetsdagar.<br>Beslut, problem, lösningar och reflektioner dokumenteras.<br>Återstår: fortsätta fylla på för varje arbetsdag fram till inlämning. |
+| 8. Beslut och reflektioner | Pågår | Finns i `docs/daily-log.md` under rubrikerna Beslut och Reflektion.<br>Återstår: fortsätta dokumentera beslut och reflektioner under projektet. |
+| 9. Utvecklingsteamets manifest | Ej klar | Inget ännu. |
+| 10. Slutpresentation | Ej klar | Inget ännu. |
+| 11. Körbar slutversion | Pågår | Fungerar i dag: startsida, lista över kommande träningspass med titel, datum, tid, plats, instruktör och lediga platser, klickbara träningspass samt detaljsida med beskrivning och passinformation.<br>Återstår: registrering, inloggning, bokning, avbokning, egna bokningar och admin som kan skapa, redigera och ta bort pass. |
+
+## Sammanfattning
+
+- **Klara krav:** 1, 4 och 5.
+- **Pågående krav:** 6, 7, 8 och 11.
+- **Ej påbörjade krav:** 2, 3, 9 och 10.
+
+Närmast i tur står aktivitetsdiagrammet och sekvensdiagrammet, eftersom de är
+egna krav och inte beror på att mer kod blir klar.

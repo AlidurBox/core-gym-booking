@@ -22,7 +22,9 @@ else
         {
             <article class="class-card">
                 <div>
-                    <h2>@trainingClass.Title</h2>
+                    <h2>
+                        <a asp-controller="Classes" asp-action="Details" asp-route-id="@trainingClass.Id">@trainingClass.Title</a>
+                    </h2>
                     <p class="class-time">@trainingClass.StartsAt.ToString("dddd d MMMM yyyy, HH:mm", swedishCulture)</p>
                 </div>
 

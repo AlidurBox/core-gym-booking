@@ -1,0 +1,41 @@
+@model CoreGymBooking.Models.TrainingClass
+@using System.Globalization
+
+@{
+    ViewData["Title"] = Model.Title;
+    var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+}
+
+<section class="class-list-header">
+    <h1>@Model.Title</h1>
+    <p>@Model.Description</p>
+</section>
+
+<article class="class-card">
+    <dl class="class-details">
+        <div>
+            <dt>Datum</dt>
+            <dd>@Model.StartsAt.ToString("dddd d MMMM yyyy", swedishCulture)</dd>
+        </div>
+        <div>
+            <dt>Tid</dt>
+            <dd>@Model.StartsAt.ToString("HH:mm", swedishCulture)</dd>
+        </div>
+        <div>
+            <dt>Plats</dt>
+            <dd>@Model.Location</dd>
+        </div>
+        <div>
+            <dt>Instruktör</dt>
+            <dd>@Model.Instructor</dd>
+        </div>
+        <div>
+            <dt>Lediga platser</dt>
+            <dd>@Model.AvailableSpots</dd>
+        </div>
+    </dl>
+</article>
+
+<p class="mt-3">
+    <a asp-controller="Classes" asp-action="Index">Tillbaka till träningspassen</a>
+</p>

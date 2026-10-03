@@ -2,7 +2,11 @@ namespace CoreGymBooking.Models;
 
 public class TrainingClass
 {
+    public int Id { get; set; }
+
     public required string Title { get; set; }
+
+    public required string Description { get; set; }
 
     public DateTime StartsAt { get; set; }
 

@@ -26,11 +26,12 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 var app = builder.Build();
 
-// Skapar databasen och kör migrationerna vid start.
+// Skapar databasen, kör migrationerna och lägger in träningspass om databasen är tom.
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     dbContext.Database.Migrate();
+    TrainingClassSeed.SeedIfEmpty(dbContext);
 }
 
 // Configure the HTTP request pipeline.

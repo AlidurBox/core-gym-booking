@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Min profil";
+}
+
+<section class="class-list-header">
+    <h1>Min profil</h1>
+    <p>Den här sidan kräver inloggning.</p>
+</section>
+
+<article class="class-card">
+    <dl class="class-details">
+        <div>
+            <dt>Inloggad som</dt>
+            <dd>@User.Identity?.Name</dd>
+        </div>
+    </dl>
+</article>
+
+<p class="mt-3">Mina bokningar läggs till här i ett senare steg.</p>

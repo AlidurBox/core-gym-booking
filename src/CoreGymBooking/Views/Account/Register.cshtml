@@ -1,0 +1,47 @@
+@model CoreGymBooking.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Skapa konto";
+}
+
+<section class="class-list-header">
+    <h1>Skapa konto</h1>
+    <p>Registrera dig med e-post och lösenord för att kunna boka träningspass.</p>
+</section>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-controller="Account" asp-action="Register" method="post">
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" autocomplete="username" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" autocomplete="new-password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ConfirmPassword" class="form-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" autocomplete="new-password" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Skapa konto</button>
+        </form>
+
+        <p class="mt-3">
+            Har du redan ett konto?
+            <a asp-controller="Account" asp-action="Login">Logga in här</a>.
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,46 @@
+@model CoreGymBooking.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Logga in";
+}
+
+<section class="class-list-header">
+    <h1>Logga in</h1>
+    <p>Logga in med din e-post och ditt lösenord.</p>
+</section>
+
+@if (TempData["Bekraftelse"] != null)
+{
+    <div class="alert alert-success">@TempData["Bekraftelse"]</div>
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-controller="Account" asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" autocomplete="username" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" autocomplete="current-password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Logga in</button>
+        </form>
+
+        <p class="mt-3">
+            Har du inget konto?
+            <a asp-controller="Account" asp-action="Register">Skapa konto här</a>.
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

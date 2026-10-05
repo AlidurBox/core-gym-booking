@@ -486,3 +486,8 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# SQLite-databasen skapas lokalt och ska inte ligga i Git
+*.db
+*.db-shm
+*.db-wal

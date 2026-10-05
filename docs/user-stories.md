@@ -14,16 +14,16 @@ lista kortet ligger i.
 
 **Done:**
 
+- Registrera användarkonto
+- Logga in och logga ut
 - Se kommande träningspass
 - Se information och lediga platser för ett pass
+- Boka träningspass
 
 **Backlog:**
 
-- Registrera användarkonto
-- Logga in och logga ut
 - Ändra personuppgifter
 - Se profil och mina bokningar
-- Boka träningspass
 - Avboka träningspass
 - Få bekräftelse på bokning och avbokning
 - Admin kan skapa träningspass
@@ -36,7 +36,7 @@ lista kortet ligger i.
 
 Som medlem vill jag kunna registrera ett konto med e post och lösenord så att jag kan använda bokningssystemet och boka träningspass.
 
-Trello-lista: Backlog
+Trello-lista: Done
 
 Acceptanskriterier:
 
@@ -49,7 +49,7 @@ Acceptanskriterier:
 
 Som medlem vill jag kunna logga in och logga ut så att jag kan komma åt mitt konto och använda bokningssystemet på ett säkert sätt.
 
-Trello-lista: Backlog
+Trello-lista: Done
 
 Acceptanskriterier:
 
@@ -114,7 +114,7 @@ Acceptanskriterier:
 
 Som medlem vill jag kunna boka ett träningspass så att jag kan delta på passet.
 
-Trello-lista: Backlog
+Trello-lista: Done
 
 Acceptanskriterier:
 

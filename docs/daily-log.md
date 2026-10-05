@@ -282,3 +282,103 @@ gör det lättare att se vilka krav som är klara och vilka som återstår.
 - PR #3 före merge.
 - PR #3 efter merge.
 - G-checklistan och user storysen i repot.
+
+---
+
+## Datum: 2026-10-05 (måndag)
+
+**Vad jag arbetade med:**
+
+En lång arbetsdag med två stories. Först blev användarhanteringen klar och
+mergad, sedan byggde jag bokningsfunktionen.
+
+Användarhantering:
+
+- Verifierade och färdigställde registrering, inloggning och utloggning.
+- Testade registrering och att bekräftelsen visas.
+- Testade fel lösenord och att felmeddelandet visas.
+- Testade inloggning med rätt uppgifter.
+- Testade att den skyddade profilsidan kräver inloggning.
+- Testade utloggning, och att en utloggad användare skickas till
+  inloggningssidan.
+- Flyttade de två auth-storysen till Done med 4/4 kriterier.
+- Commitade, skapade PR #4 och mergade den till `main`.
+
+Bokning av träningspass:
+
+- Började på storyn "Boka träningspass".
+- Skapade `Booking`-modellen med relation till `TrainingClass`.
+- Flyttade träningspassen från den enkla seed-listan till SQLite med EF Core.
+- Skapade migrationen `AddTrainingClassesAndBookings`.
+- Testade bokning manuellt i webbläsaren.
+- Testade att lediga platser minskade från 16 till 15 efter bokningen.
+- Testade att bokningen visas under Mina bokningar.
+- Testade dubbelbokning och fullbokat pass.
+- Flyttade "Boka träningspass" till Done med 5/5 kriterier.
+- Commitade, skapade PR #5 och mergade den till `main`.
+
+**Vad jag implementerade:**
+
+- `Booking` med Id, UserId, TrainingClassId och CreatedAt, kopplad till den
+  inloggade Identity-användaren och till träningspasset.
+- Träningspassen ligger nu i databasen i stället för i en hårdkodad lista, och
+  seedas automatiskt om tabellen är tom.
+- Lediga platser räknas som maxantal minus antalet sparade bokningar, och kan
+  aldrig visas som ett negativt tal.
+- Dubbelbokning blockeras, både av en kontroll i koden och av ett unikt index i
+  databasen.
+- Fullbokade pass blockeras, och användaren får ett tydligt meddelande.
+- Bokningen sparas i SQLite, och Mina bokningar på profilsidan visar
+  användarens kommande bokningar med titel, datum och tid.
+
+**Beslut:**
+
+- SQLite och EF Core används nu även för träningspass och bokningar, inte bara
+  för användare.
+- Ett unikt index läggs på UserId och TrainingClassId, så att dubbelbokning
+  stoppas även om kontrollen i koden skulle missas.
+- Den lokala databasfilen `app.db` ska inte versionshanteras, utan ligger i
+  `.gitignore`.
+- Avbokning implementeras senare, i en egen story.
+- Storyn "Se profil och mina bokningar" markeras inte som klar ännu, även om
+  profilsidan nu visar bokningar. Den har fler egna kriterier.
+
+**Problem:**
+
+Den lokala databasfilen hade tidigare råkat tas bort under en kontroll av
+Git-reglerna, så testanvändaren försvann.
+
+Jag märkte också igen hur stor skillnaden är mellan ett tekniskt test och en
+riktig verifiering i webbläsaren. Ett pass kan svara med rätt statuskod utan
+att sidan känns rätt att använda.
+
+**Lösning:**
+
+Databasen var inget problem i sig, eftersom den återskapas automatiskt via
+migrationen och seedningen vid nästa start. Jag fick bara registrera en ny
+testanvändare.
+
+För att inte flytta kort i onödan testar jag varje acceptanskriterium i
+webbläsaren innan ett Trello-kort får flyttas till Done.
+
+**Reflektion:**
+
+Projektet har nu riktig användarhantering och riktiga bokningar i en databas,
+vilket känns som ett stort steg från den första listan med hårdkodade pass.
+
+Brancher, pull requests och Trello speglar också arbetet bättre nu. Varje
+story har sin egen branch och sin egen pull request, vilket gör det lätt att
+visa vad som gjorts och när.
+
+**Nästa steg:**
+
+- Avbokning av ett bokat pass.
+- Därefter adminfunktionerna för att skapa, redigera och ta bort pass.
+
+**Bevis att samla in:**
+
+- PR #4 och PR #5 efter merge.
+- Trello med de fem storysen i Done och ifyllda checklistor.
+- Skärmbild på bekräftelsen efter en bokning.
+- Skärmbild på meddelandet vid dubbelbokning och på ett fullbokat pass.
+- Skärmbild på Mina bokningar.

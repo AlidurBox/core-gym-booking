@@ -11,6 +11,16 @@
     <p>@Model.Description</p>
 </section>
 
+@if (TempData["Bekraftelse"] != null)
+{
+    <div class="alert alert-success">@TempData["Bekraftelse"]</div>
+}
+
+@if (TempData["Fel"] != null)
+{
+    <div class="alert alert-danger">@TempData["Fel"]</div>
+}
+
 <article class="class-card">
     <dl class="class-details">
         <div>
@@ -35,6 +45,17 @@
         </div>
     </dl>
 </article>
+
+@if (Model.IsFull)
+{
+    <p class="mt-3">Passet är fullbokat.</p>
+}
+else
+{
+    <form class="mt-3" asp-controller="Classes" asp-action="Book" asp-route-id="@Model.Id" method="post">
+        <button type="submit" class="btn btn-primary">Boka passet</button>
+    </form>
+}
 
 <p class="mt-3">
     <a asp-controller="Classes" asp-action="Index">Tillbaka till träningspassen</a>

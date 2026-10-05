@@ -16,7 +16,9 @@ public class TrainingClass
 
     public int MaxParticipants { get; set; }
 
-    public int BookedParticipants { get; set; }
+    public List<Booking> Bookings { get; set; } = new();
 
-    public int AvailableSpots => Math.Max(0, MaxParticipants - BookedParticipants);
+    public int AvailableSpots => Math.Max(0, MaxParticipants - Bookings.Count);
+
+    public bool IsFull => Bookings.Count >= MaxParticipants;
 }

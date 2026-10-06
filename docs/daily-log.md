@@ -382,3 +382,60 @@ visa vad som gjorts och när.
 - Skärmbild på bekräftelsen efter en bokning.
 - Skärmbild på meddelandet vid dubbelbokning och på ett fullbokat pass.
 - Skärmbild på Mina bokningar.
+
+---
+
+## Datum: 2026-10-06 (tisdag)
+
+**Vad jag arbetade med:**
+
+En kontroll- och dokumentationsdag. Bokningsfunktionen var redan klar och
+mergad, så i dag handlade arbetet om att kontrollera att allt verkligen ligger
+på plats och att samla bevisen för de tester jag har gjort.
+
+- Kontrollerade att PR #4 och PR #5 är mergade till `main`.
+- Kontrollerade att användarhanteringen och bokningen finns på `origin/main`.
+- Kontrollerade Trello-statusen i dokumentationen.
+- Verifierade att fem stories ligger i Done och sju i Backlog.
+- Sammanställde tidigare genomförda tester i `docs/test-checklist.md`.
+- Kontrollerade vilka G-krav som återstår.
+
+**Vad jag implementerade:**
+
+Ingen ny kod i dag. Arbetet var kontroll och dokumentation.
+
+**Beslut:**
+
+- Jag bygger inte om bokningsfunktionen, eftersom den redan är klar, verifierad
+  och mergad.
+- Testresultaten samlas i en egen checklista i stället för att bara ligga
+  utspridda i dagboken.
+- PR #2 fortsätter vara öppen, så att den löpande dokumentationen kan samlas
+  där.
+
+**Problem:**
+
+GitHub hade återigen fel aktivt konto, så den första `git fetch` misslyckades
+med "Repository not found".
+
+**Lösning:**
+
+Jag växlade tillbaka till kontot AlidurBox, och därefter gick det att verifiera
+både repot och `main`.
+
+**Reflektion:**
+
+Det räcker inte med att koden fungerar. Läraren behöver också kunna se vilka
+tester som faktiskt har gjorts, och då hjälper en samlad testchecklista.
+Bokningsflödet är nu implementerat, manuellt verifierat och dokumenterat, och
+det känns som en tydlig helhet.
+
+**Nästa steg:**
+
+- Avboka träningspass.
+
+**Bevis att samla in:**
+
+- Trello med fem stories i Done.
+- PR #4 och PR #5 i mergat läge.
+- Testchecklistan i repot.

@@ -1,4 +1,4 @@
-@model IReadOnlyList<CoreGymBooking.Models.Booking>
+@model CoreGymBooking.Models.ProfileViewModel
 @using System.Globalization
 
 @{
@@ -11,25 +11,62 @@
     <p>Den här sidan kräver inloggning.</p>
 </section>
 
+@if (TempData["Bekraftelse"] != null)
+{
+    <div class="alert alert-success">@TempData["Bekraftelse"]</div>
+}
+
 <article class="class-card">
     <dl class="class-details">
         <div>
-            <dt>Inloggad som</dt>
-            <dd>@User.Identity?.Name</dd>
+            <dt>E-post</dt>
+            <dd>@Model.Email</dd>
+        </div>
+        <div>
+            <dt>Namn</dt>
+            <dd>@(string.IsNullOrWhiteSpace(Model.Name) ? "Inte angivet" : Model.Name)</dd>
+        </div>
+        <div>
+            <dt>Telefonnummer</dt>
+            <dd>@(string.IsNullOrWhiteSpace(Model.PhoneNumber) ? "Inte angivet" : Model.PhoneNumber)</dd>
         </div>
     </dl>
 </article>
 
+<h2 class="mt-4">Ändra personuppgifter</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-controller="Profile" asp-action="Save" method="post">
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="PhoneNumber" class="form-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Spara uppgifter</button>
+        </form>
+    </div>
+</div>
+
 <h2 class="mt-4">Mina bokningar</h2>
 
-@if (Model.Count == 0)
+@if (Model.Bookings.Count == 0)
 {
     <p class="text-muted">Du har inga kommande bokningar.</p>
 }
 else
 {
     <div class="class-list">
-        @foreach (var booking in Model)
+        @foreach (var booking in Model.Bookings)
         {
             <article class="class-card">
                 <h3>@booking.TrainingClass!.Title</h3>
@@ -44,7 +81,15 @@ else
                         <dd>@booking.TrainingClass.StartsAt.ToString("HH:mm", swedishCulture)</dd>
                     </div>
                 </dl>
+
+                <form class="mt-3" asp-controller="Profile" asp-action="CancelBooking" asp-route-id="@booking.Id" method="post">
+                    <button type="submit" class="btn btn-outline-danger">Avboka</button>
+                </form>
             </article>
         }
     </div>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

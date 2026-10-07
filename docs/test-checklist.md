@@ -34,19 +34,37 @@ Testerna nedan gäller funktioner som är klara och mergade till `main`.
 | Dubbelbokning av samma pass | Samma användare kan inte boka samma pass igen | "Du har redan bokat det här passet." | Godkänd | 2026-10-05 |
 | Fullbokat pass, HIIT Express med 0 lediga platser | Passet kan inte bokas | Detaljsidan visar "Passet är fullbokat." i stället för bokningsknappen. Ett bokningsförsök svarar "Passet är fullbokat, så det finns inga lediga platser kvar." | Godkänd | 2026-10-05 |
 
+## Profil och personuppgifter
+
+| Test | Förväntat resultat | Faktiskt resultat | Resultat | Verifierat |
+|---|---|---|---|---|
+| Profilsidan visar användarens uppgifter | E-post, namn och telefonnummer visas | Alla tre visades | Godkänd | 2026-10-07 |
+| Namn och telefonnummer kan ändras | Fälten går att redigera och spara | Namnet ändrades till "Alidur Hamid Test" och telefonnumret sparades, med meddelandet "Dina personuppgifter är sparade." | Godkänd | 2026-10-07 |
+| Ändringarna finns kvar efter ny request | De sparade uppgifterna visas på profilen | De uppdaterade uppgifterna visades | Godkänd | 2026-10-07 |
+| Ogiltigt telefonnummer | Ett valideringsfel visas och inget sparas | "Ange ett giltigt telefonnummer." och ingenting sparades | Godkänd | 2026-10-07 |
+
+## Avbokning
+
+| Test | Förväntat resultat | Faktiskt resultat | Resultat | Verifierat |
+|---|---|---|---|---|
+| Kommande bokningar visas under Mina bokningar | Användarens kommande bokningar listas | Core och balans visades | Godkänd | 2026-10-07 |
+| Varje bokning visar passets uppgifter | Titel, datum och tid visas | Alla tre visades | Godkänd | 2026-10-07 |
+| Avbokning av en bokning | Bokningen tas bort | Avbokningen gick igenom | Godkänd | 2026-10-07 |
+| Bokningen försvinner efter avbokning | Bokningen visas inte längre under Mina bokningar | Listan var tom efteråt | Godkänd | 2026-10-07 |
+| Lediga platser efter avbokning | Antalet ökar med ett | Core och balans gick från 15 till 16 | Godkänd | 2026-10-07 |
+| Bekräftelse efter avbokning | Ett tydligt meddelande visas | "Din bokning av Core och balans har avbokats." | Godkänd | 2026-10-07 |
+| Avboka någon annans bokning | Ska inte vara möjligt | Försöket gav 404 och bokningen låg kvar | Godkänd | 2026-10-07 |
+
 ## Teknisk kontroll
 
 | Test | Förväntat resultat | Faktiskt resultat | Resultat | Verifierat |
 |---|---|---|---|---|
-| `dotnet build` | Projektet bygger | 0 errors och 0 warnings | Godkänd | 2026-10-05 |
+| `dotnet build` | Projektet bygger | 0 errors och 0 warnings | Godkänd | 2026-10-07 |
 
 ## Tester som återstår senare
 
 De här testerna kan inte göras än, eftersom funktionerna inte är byggda:
 
-- Avbokning av ett bokat pass.
-- Ändra personuppgifter.
-- Hela storyn för profil och Mina bokningar, med alla dess acceptanskriterier.
 - Admin skapar träningspass.
 - Admin redigerar träningspass.
 - Admin tar bort träningspass.

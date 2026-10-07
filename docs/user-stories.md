@@ -16,16 +16,16 @@ lista kortet ligger i.
 
 - Registrera användarkonto
 - Logga in och logga ut
+- Ändra personuppgifter
+- Se profil och mina bokningar
 - Se kommande träningspass
 - Se information och lediga platser för ett pass
 - Boka träningspass
+- Avboka träningspass
+- Få bekräftelse på bokning och avbokning
 
 **Backlog:**
 
-- Ändra personuppgifter
-- Se profil och mina bokningar
-- Avboka träningspass
-- Få bekräftelse på bokning och avbokning
 - Admin kan skapa träningspass
 - Admin kan redigera och ta bort träningspass
 - Se träningspass i schema eller kalenderöversikt
@@ -62,7 +62,7 @@ Acceptanskriterier:
 
 Som medlem vill jag kunna ändra mina personuppgifter så att informationen på mitt konto är aktuell.
 
-Trello-lista: Backlog
+Trello-lista: Done
 
 Acceptanskriterier:
 
@@ -75,7 +75,7 @@ Acceptanskriterier:
 
 Som medlem vill jag kunna se min profil och mina kommande bokningar så att jag får en tydlig överblick över mitt konto.
 
-Trello-lista: Backlog
+Trello-lista: Done
 
 Acceptanskriterier:
 
@@ -128,7 +128,7 @@ Acceptanskriterier:
 
 Som medlem vill jag kunna avboka ett träningspass så att min plats blir tillgänglig för någon annan.
 
-Trello-lista: Backlog
+Trello-lista: Done
 
 Acceptanskriterier:
 
@@ -141,7 +141,7 @@ Acceptanskriterier:
 
 Som medlem vill jag få en bekräftelse när jag bokar eller avbokar så att jag vet att åtgärden lyckades.
 
-Trello-lista: Backlog
+Trello-lista: Done
 
 Acceptanskriterier:
 

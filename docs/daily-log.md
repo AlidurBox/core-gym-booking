@@ -439,3 +439,106 @@ det känns som en tydlig helhet.
 - Trello med fem stories i Done.
 - PR #4 och PR #5 i mergat läge.
 - Testchecklistan i repot.
+
+---
+
+## Datum: 2026-10-07 (onsdag)
+
+**Vad jag arbetade med:**
+
+Jag tog tre stories på en gång, eftersom de hänger ihop och alla handlar om
+profilsidan: "Ändra personuppgifter", "Se profil och mina bokningar" och
+"Avboka träningspass".
+
+- Skapade `UserProfile` med namn och telefonnummer, kopplad till
+  Identity-användaren.
+- Skapade `ProfileViewModel`.
+- Skapade migrationen `AddUserProfiles`.
+- Uppdaterade profilsidan så att e-post, namn och telefonnummer visas.
+- Lade till ett formulär för att ändra namn och telefonnummer.
+- Personuppgifterna sparas i SQLite via EF Core.
+- Kommande bokningar visas under Mina bokningar.
+- Lade till en Avboka-knapp för varje bokning.
+
+**Vad jag implementerade:**
+
+- Avbokningen sker med POST och kräver inloggning.
+- Användaren kan bara avboka sina egna bokningar. Bokningen hämtas med både
+  bokningens id och den inloggade användarens id.
+- Bokningen tas bort ur databasen.
+- Lediga platser ökar automatiskt efter avbokning, eftersom antalet räknas från
+  sparade bokningar.
+- En bekräftelse visas efter avbokningen, med namnet på passet.
+
+Manuellt verifierat i webbläsaren:
+
+- Profilen visade e-post, namn och telefonnummer.
+- Namnet ändrades till "Alidur Hamid Test".
+- Telefonnumret ändrades och sparades.
+- Bekräftelsen "Dina personuppgifter är sparade." visades.
+- Core och balans fanns under Mina bokningar.
+- Avbokningen fungerade.
+- Bekräftelsen "Din bokning av Core och balans har avbokats." visades.
+- Bokningen försvann från Mina bokningar.
+- Lediga platser ökade från 15 till 16.
+
+Git:
+
+- Branch `feature/profile-and-cancellation`.
+- Commit `4c3aebf`.
+- PR #6, som mergades till `main`.
+
+Trello efter dagens arbete:
+
+- Ändra personuppgifter, Done 4/4.
+- Se profil och mina bokningar, Done 4/4.
+- Avboka träningspass, Done 4/4.
+- Få bekräftelse på bokning och avbokning, Done 3/3.
+- Totalt 9 i Done och 3 i Backlog.
+
+**Beslut:**
+
+- De tre profilrelaterade storysen togs i samma branch, eftersom de delar samma
+  sida och samma controller.
+- Personuppgifterna sparas i en egen tabell `UserProfiles` i stället för att
+  bygga om Identity-användaren, vilket blev en mindre ändring.
+- E-posten visas men går inte att ändra, eftersom den används för inloggning.
+
+**Problem:**
+
+Först visade `localhost:5067` den ursprungliga ASP.NET-mallen i stället för
+Core Gym Club. Det berodde på att en gammal dotnet-process låg kvar och
+körde kod som byggts när dokumentationsbranchen var utcheckad.
+
+Pushen till GitHub misslyckades också flera gånger, först med "Internal Server
+Error" och sedan med "Repository not found".
+
+**Lösning:**
+
+Jag startade om rätt process från `~/projekt` med rätt branch utcheckad, och
+då visades appen korrekt.
+
+Pushproblemet berodde på att det aktiva GitHub-kontot hade växlat. Jag
+växlade tillbaka till AlidurBox, och därefter fungerade både push och PR.
+
+**Reflektion:**
+
+Det är viktigt att kontrollera vilken branch och vilken process som faktiskt
+kör, innan man letar efter fel i koden. Felet låg inte i projektet utan i
+miljön.
+
+Att verifiera manuellt innan ett Trello-kort flyttas till Done fungerar bra, och
+nu har projektet ett komplett grundflöde för medlemmen: konto, profil, bokning
+och avbokning.
+
+**Nästa steg:**
+
+- Admin kan skapa träningspass.
+- Admin kan redigera och ta bort träningspass.
+
+**Bevis att samla in:**
+
+- Trello med nio stories i Done.
+- PR #6 före och efter merge.
+- Skärmbild på profilsidan med e-post, namn och telefonnummer.
+- Skärmbild på bekräftelsen efter avbokning.

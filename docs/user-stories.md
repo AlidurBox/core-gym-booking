@@ -23,11 +23,11 @@ lista kortet ligger i.
 - Boka träningspass
 - Avboka träningspass
 - Få bekräftelse på bokning och avbokning
+- Admin kan skapa träningspass
+- Admin kan redigera och ta bort träningspass
 
 **Backlog:**
 
-- Admin kan skapa träningspass
-- Admin kan redigera och ta bort träningspass
 - Se träningspass i schema eller kalenderöversikt
 
 ## User stories
@@ -153,7 +153,7 @@ Acceptanskriterier:
 
 Som administratör vill jag kunna skapa träningspass så att nya pass kan läggas till i schemat.
 
-Trello-lista: Backlog
+Trello-lista: Done
 
 Acceptanskriterier:
 
@@ -167,7 +167,7 @@ Acceptanskriterier:
 
 Som administratör vill jag kunna redigera och ta bort träningspass så att schemat kan hållas uppdaterat.
 
-Trello-lista: Backlog
+Trello-lista: Done
 
 Acceptanskriterier:
 

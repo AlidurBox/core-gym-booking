@@ -55,18 +55,30 @@ Testerna nedan gäller funktioner som är klara och mergade till `main`.
 | Bekräftelse efter avbokning | Ett tydligt meddelande visas | "Din bokning av Core och balans har avbokats." | Godkänd | 2026-10-07 |
 | Avboka någon annans bokning | Ska inte vara möjligt | Försöket gav 404 och bokningen låg kvar | Godkänd | 2026-10-07 |
 
+## Administration av träningspass
+
+| Test | Förväntat resultat | Faktiskt resultat | Resultat | Verifierat |
+|---|---|---|---|---|
+| Admin kan logga in | Adminkontot kan logga in | Inloggningen fungerade | Godkänd | 2026-10-14 |
+| Admin kan öppna administrationen | Adminsidan visar alla träningspass | Alla pass listades med datum, tid, plats, instruktör, bokade och lediga platser | Godkänd | 2026-10-14 |
+| Admin skapar ett träningspass | Passet sparas och en bekräftelse visas | Passet sparades och bekräftelsen visades | Godkänd | 2026-10-14 |
+| Nytt pass syns i träningspasslistan | Passet finns i den vanliga listan och har en detaljsida | Passet visades i listan och detaljsidan visade alla uppgifter | Godkänd | 2026-10-14 |
+| Admin redigerar ett träningspass | Ändringarna sparas | Titel, datum, tid, plats, instruktör och max antal deltagare uppdaterades | Godkänd | 2026-10-14 |
+| Ändringen syns för medlemmar | Den uppdaterade informationen visas i listan och på detaljsidan | De nya uppgifterna visades | Godkänd | 2026-10-14 |
+| Admin tar bort ett träningspass | Passet försvinner | Passet togs bort från administrationen och från den vanliga listan, och detaljsidan gav 404 | Godkänd | 2026-10-14 |
+| Ogiltigt formulär | Valideringsfel visas och inget sparas | Svenska felmeddelanden visades och ingenting sparades | Godkänd | 2026-10-14 |
+| Vanlig medlem försöker nå administrationen | Åtkomst nekas | Sidan "Ingen behörighet" visades, både via länk, direkt adress och POST | Godkänd | 2026-10-14 |
+| Pass som inte finns | Hanteras säkert | Redigera och ta bort med okänt id gav 404 | Godkänd | 2026-10-14 |
+
 ## Teknisk kontroll
 
 | Test | Förväntat resultat | Faktiskt resultat | Resultat | Verifierat |
 |---|---|---|---|---|
-| `dotnet build` | Projektet bygger | 0 errors och 0 warnings | Godkänd | 2026-10-07 |
+| `dotnet build` | Projektet bygger | 0 errors och 0 warnings | Godkänd | 2026-10-14 |
 
 ## Tester som återstår senare
 
-De här testerna kan inte göras än, eftersom funktionerna inte är byggda:
+De här testerna är inte gjorda än:
 
-- Admin skapar träningspass.
-- Admin redigerar träningspass.
-- Admin tar bort träningspass.
-- Schema eller kalenderöversikt.
+- Schema eller kalenderöversikt, som inte är byggd.
 - Slutlig responsiv kontroll på mobil, surfplatta och dator.

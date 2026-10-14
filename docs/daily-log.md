@@ -542,3 +542,96 @@ och avbokning.
 - PR #6 före och efter merge.
 - Skärmbild på profilsidan med e-post, namn och telefonnummer.
 - Skärmbild på bekräftelsen efter avbokning.
+
+---
+
+## Datum: 2026-10-14 (onsdag)
+
+**Vad jag arbetade med:**
+
+Adminfunktionerna blev klara, verifierade och mergade till `main`.
+
+- Gick igenom adminfunktionerna i webbläsaren och testade dem punkt för punkt
+  mot acceptanskriterierna.
+- Testade att skapa ett träningspass, att redigera det och att ta bort det.
+- Testade att en vanlig medlem nekas åtkomst till administrationen.
+- Körde `dotnet build`, som gav 0 errors och 0 warnings.
+- Commitade arbetet som `d77084d Add training class administration` på
+  branchen `feature/admin-classes`.
+- Skapade PR #7 "Add training class administration" och mergade den till
+  `main`.
+- Flyttade de två adminkorten till Done i Trello och uppdaterade
+  dokumentationen.
+
+**Vad leveransen innehåller:**
+
+- **Adminroll och behörighetskontroll:** rollen Admin och ett lokalt adminkonto
+  skapas när appen startar. Administrationen ligger bakom
+  `[Authorize(Roles = "Admin")]`, och adminlänken i menyn visas bara för
+  administratörer.
+- **Skapa träningspass:** ett formulär med titel, beskrivning, datum och tid,
+  plats, instruktör och max antal deltagare. Passet sparas i SQLite via EF Core
+  och syns direkt i den vanliga träningspasslistan.
+- **Redigera träningspass:** adminsidan listar alla pass, och varje pass kan
+  öppnas och ändras. Ändringarna syns både på adminsidan och i listan och på
+  detaljsidan.
+- **Ta bort träningspass:** varje pass kan tas bort, och det försvinner då från
+  både administrationen och den vanliga listan.
+- **Validering:** alla fält valideras med svenska felmeddelanden, och ett
+  ogiltigt formulär sparar ingenting.
+- **Vanlig medlem nekas:** direkta adresser och POST mot administrationen ger
+  sidan "Ingen behörighet", och ett pass som inte finns ger 404.
+
+Trello efter dagens arbete:
+
+- Admin kan skapa träningspass, Done 5/5.
+- Admin kan redigera och ta bort träningspass, Done 4/4.
+- Totalt 11 i Done och 1 i Backlog. Kvar är bara storyn om schema eller
+  kalenderöversikt.
+
+**Beslut:**
+
+- Administrationen fick en egen controller och egna vyer, i stället för att
+  blandas in i den vanliga passlistan. Det gör behörighetskontrollen enkel,
+  eftersom hela controllern kan skyddas med en rad.
+- Adminkontots uppgifter ligger i `appsettings.json`, så att projektet går att
+  klona och köra direkt. I ett riktigt projekt skulle de ligga i user-secrets
+  eller i en miljövariabel.
+- En egen sida för nekad åtkomst, i stället för att skicka inloggade medlemmar
+  tillbaka till inloggningssidan, vilket såg ut som ett fel.
+
+**Problem:**
+
+Pushen till GitHub nekades igen, eftersom det aktiva GitHub-kontot hade växlat
+till ett annat av mina konton.
+
+**Lösning:**
+
+Jag växlade tillbaka till AlidurBox, och då fungerade både push och pull
+request. Det här har hänt flera gånger nu, så nästa steg är att lägga in
+kontonamnet i remote-adressen för det här repot.
+
+**Reflektion:**
+
+Nu finns hela grundflödet som kunden efterfrågade: medlemmen kan registrera
+sig, logga in, se passen, boka, avboka och sköta sin profil, och
+administratören kan sköta schemat. Det känns som att projektet uppfyller
+funktionskraven för G.
+
+Behörighetskontrollen var enklare än jag trodde. En rad på controllern räckte,
+men det var viktigt att faktiskt testa med ett vanligt medlemskonto och med
+direkta adresser, och inte bara lita på att adminlänken var dold.
+
+**Nästa steg:**
+
+- Aktivitetsdiagram och sekvensdiagram för bokningsflödet.
+- Uppdatera README inför inlämning.
+
+**Bevis att samla in:**
+
+- Trello med 11 stories i Done.
+- PR #7 före och efter merge.
+- Skärmbild på adminsidan med listan över pass.
+- Skärmbild på formuläret för att skapa eller redigera ett pass.
+- Skärmbild på sidan "Ingen behörighet" när en vanlig medlem försöker nå
+  administrationen.

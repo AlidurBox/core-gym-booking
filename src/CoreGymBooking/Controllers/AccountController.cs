@@ -93,6 +93,12 @@ public class AccountController : Controller
         return View(model);
     }
 
+    [HttpGet]
+    public IActionResult AccessDenied()
+    {
+        return View();
+    }
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Logout()

@@ -1,0 +1,64 @@
+@model CoreGymBooking.Models.TrainingClassViewModel
+
+@{
+    ViewData["Title"] = "Skapa träningspass";
+}
+
+<section class="class-list-header">
+    <h1>Skapa träningspass</h1>
+    <p>Fyll i uppgifterna om passet. Det syns i träningspasslistan när det är sparat.</p>
+</section>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-controller="Admin" asp-action="Create" method="post">
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label"></label>
+                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="StartsAt" class="form-label"></label>
+                <input asp-for="StartsAt" type="datetime-local" class="form-control" />
+                <span asp-validation-for="StartsAt" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Location" class="form-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Instructor" class="form-label"></label>
+                <input asp-for="Instructor" class="form-control" />
+                <span asp-validation-for="Instructor" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="MaxParticipants" class="form-label"></label>
+                <input asp-for="MaxParticipants" class="form-control" />
+                <span asp-validation-for="MaxParticipants" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Spara träningspass</button>
+        </form>
+
+        <p class="mt-3">
+            <a asp-controller="Admin" asp-action="Index">Tillbaka till administrationen</a>
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

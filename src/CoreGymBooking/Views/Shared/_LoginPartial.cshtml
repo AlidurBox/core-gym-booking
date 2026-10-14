@@ -1,6 +1,12 @@
 <ul class="navbar-nav">
     @if (User.Identity?.IsAuthenticated == true)
     {
+        @if (User.IsInRole(CoreGymBooking.Data.IdentitySeed.AdminRole))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="Admin" asp-action="Index">Administrera pass</a>
+            </li>
+        }
         <li class="nav-item">
             <a class="nav-link text-dark" asp-controller="Profile" asp-action="Index">Min profil</a>
         </li>

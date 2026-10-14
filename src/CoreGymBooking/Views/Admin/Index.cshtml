@@ -1,0 +1,65 @@
+@model IReadOnlyList<CoreGymBooking.Models.TrainingClass>
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Administrera träningspass";
+    var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+}
+
+<section class="class-list-header">
+    <h1>Administrera träningspass</h1>
+    <p>Här ser du alla träningspass i systemet och kan lägga till nya.</p>
+</section>
+
+@if (TempData["Bekraftelse"] != null)
+{
+    <div class="alert alert-success">@TempData["Bekraftelse"]</div>
+}
+
+<p>
+    <a class="btn btn-primary" asp-controller="Admin" asp-action="Create">Skapa nytt träningspass</a>
+</p>
+
+@if (Model.Count == 0)
+{
+    <p class="text-muted">Det finns inga träningspass i systemet.</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Titel</th>
+                    <th>Datum och tid</th>
+                    <th>Plats</th>
+                    <th>Instruktör</th>
+                    <th>Bokade</th>
+                    <th>Lediga platser</th>
+                    <th>Åtgärder</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var trainingClass in Model)
+                {
+                    <tr>
+                        <td>@trainingClass.Title</td>
+                        <td>@trainingClass.StartsAt.ToString("d MMMM yyyy, HH:mm", swedishCulture)</td>
+                        <td>@trainingClass.Location</td>
+                        <td>@trainingClass.Instructor</td>
+                        <td>@trainingClass.Bookings.Count av @trainingClass.MaxParticipants</td>
+                        <td>@trainingClass.AvailableSpots</td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-primary" asp-controller="Admin" asp-action="Edit" asp-route-id="@trainingClass.Id">Redigera</a>
+
+                            <form class="d-inline" asp-controller="Admin" asp-action="Delete" asp-route-id="@trainingClass.Id" method="post"
+                                  onsubmit="return confirm('Vill du ta bort @trainingClass.Title? Passets bokningar tas också bort.');">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Ta bort</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

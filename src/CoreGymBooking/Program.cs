@@ -21,17 +21,20 @@ builder.Services
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Account/Login";
-    options.AccessDeniedPath = "/Account/Login";
+    options.AccessDeniedPath = "/Account/AccessDenied";
 });
 
 var app = builder.Build();
 
-// Skapar databasen, kör migrationerna och lägger in träningspass om databasen är tom.
+// Skapar databasen, kör migrationerna, lägger in träningspass om databasen är tom
+// och ser till att rollen Admin och adminkontot finns.
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     dbContext.Database.Migrate();
     TrainingClassSeed.SeedIfEmpty(dbContext);
+
+    await IdentitySeed.SeedAdminAsync(scope.ServiceProvider, app.Configuration);
 }
 
 // Configure the HTTP request pipeline.

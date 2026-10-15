@@ -36,6 +36,13 @@ public class ClassesController : Controller
         return View(trainingClass);
     }
 
+    public async Task<IActionResult> Schedule()
+    {
+        var upcomingClasses = await GetUpcomingClasses().ToListAsync();
+
+        return View(upcomingClasses);
+    }
+
     [HttpPost]
     [Authorize]
     [ValidateAntiForgeryToken]

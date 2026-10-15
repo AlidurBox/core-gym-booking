@@ -1,0 +1,59 @@
+@model IReadOnlyList<CoreGymBooking.Models.TrainingClass>
+@using System.Globalization
+
+@{
+    ViewData["Title"] = "Schema";
+    var swedishCulture = CultureInfo.GetCultureInfo("sv-SE");
+    var days = Model
+        .GroupBy(trainingClass => trainingClass.StartsAt.Date)
+        .OrderBy(day => day.Key);
+}
+
+<section class="class-list-header">
+    <h1>Schema</h1>
+    <p>Här ser du kommande träningspass dag för dag.</p>
+</section>
+
+@if (!Model.Any())
+{
+    <p class="text-muted">Det finns inga kommande träningspass att visa.</p>
+}
+else
+{
+    <div class="class-list">
+        @foreach (var day in days)
+        {
+            <article class="class-card">
+                <h2>@day.Key.ToString("dddd d MMMM yyyy", swedishCulture)</h2>
+
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th>Tid</th>
+                            <th>Pass</th>
+                            <th>Plats</th>
+                            <th>Instruktör</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var trainingClass in day.OrderBy(item => item.StartsAt))
+                        {
+                            <tr>
+                                <td>@trainingClass.StartsAt.ToString("HH:mm", swedishCulture)</td>
+                                <td>
+                                    <a asp-controller="Classes" asp-action="Details" asp-route-id="@trainingClass.Id">@trainingClass.Title</a>
+                                </td>
+                                <td>@trainingClass.Location</td>
+                                <td>@trainingClass.Instructor</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </article>
+        }
+    </div>
+}
+
+<p class="mt-3">
+    <a asp-controller="Classes" asp-action="Index">Visa träningspassen som lista</a>
+</p>

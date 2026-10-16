@@ -70,15 +70,27 @@ Testerna nedan gäller funktioner som är klara och mergade till `main`.
 | Vanlig medlem försöker nå administrationen | Åtkomst nekas | Sidan "Ingen behörighet" visades, både via länk, direkt adress och POST | Godkänd | 2026-10-14 |
 | Pass som inte finns | Hanteras säkert | Redigera och ta bort med okänt id gav 404 | Godkänd | 2026-10-14 |
 
+## Schema
+
+| Test | Förväntat resultat | Faktiskt resultat | Resultat | Verifierat |
+|---|---|---|---|---|
+| Schemasidan är publik | `/Classes/Schedule` kan öppnas utan inloggning, och länken "Schema" finns i menyn | Sidan öppnades utan inloggning via länken i menyn | Godkänd | 2026-10-15 |
+| Bara kommande pass visas | Pass som redan har startat visas inte | Bara kommande pass visades | Godkänd | 2026-10-15 |
+| Passen grupperas per datum | Varje dag får en egen rubrik med dagens pass under | Passen visades under rubriken för rätt datum | Godkänd | 2026-10-15 |
+| Två pass samma dag | Båda visas under samma datum, sorterade efter tid | Båda passen visades under samma datum, i rätt tidsordning | Godkänd | 2026-10-15 |
+| Passets uppgifter visas | Tid, titel, plats och instruktör visas | Alla fyra uppgifterna visades | Godkänd | 2026-10-15 |
+| Passnamnet länkar till detaljsidan | Klick på passnamnet öppnar passets detaljsida | Rätt detaljsida öppnades | Godkänd | 2026-10-15 |
+| Schemat bygger på registrerade pass | Passen hämtas från SQLite via EF Core | Schemat visade samma kommande pass som träningspasslistan | Godkänd | 2026-10-15 |
+
 ## Teknisk kontroll
 
 | Test | Förväntat resultat | Faktiskt resultat | Resultat | Verifierat |
 |---|---|---|---|---|
 | `dotnet build` | Projektet bygger | 0 errors och 0 warnings | Godkänd | 2026-10-14 |
+| `dotnet build` med schemasidan | Projektet bygger | 0 errors och 0 warnings | Godkänd | 2026-10-15 |
 
 ## Tester som återstår senare
 
 De här testerna är inte gjorda än:
 
-- Schema eller kalenderöversikt, som inte är byggd.
 - Slutlig responsiv kontroll på mobil, surfplatta och dator.

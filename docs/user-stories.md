@@ -25,10 +25,9 @@ lista kortet ligger i.
 - Få bekräftelse på bokning och avbokning
 - Admin kan skapa träningspass
 - Admin kan redigera och ta bort träningspass
-
-**Backlog:**
-
 - Se träningspass i schema eller kalenderöversikt
+
+Alla 12 stories ligger i Done.
 
 ## User stories
 
@@ -180,7 +179,7 @@ Acceptanskriterier:
 
 Som medlem vill jag kunna se träningspassen i en schema eller kalenderöversikt så att jag enkelt kan få en överblick över kommande pass.
 
-Trello-lista: Backlog
+Trello-lista: Done
 
 Acceptanskriterier:
 

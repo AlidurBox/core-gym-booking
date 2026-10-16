@@ -635,3 +635,140 @@ direkta adresser, och inte bara lita på att adminlänken var dold.
 - Skärmbild på formuläret för att skapa eller redigera ett pass.
 - Skärmbild på sidan "Ingen behörighet" när en vanlig medlem försöker nå
   administrationen.
+
+---
+
+## Datum: 2026-10-15 (torsdag)
+
+**Vad jag arbetade med:**
+
+Den sista user storyn, "Se träningspass i schema eller kalenderöversikt", blev
+klar, verifierad och mergad till `main`. Därmed ligger alla 12 stories i Done.
+
+- Skapade branchen `feature/class-schedule` från `main` efter PR #7.
+- Byggde en schemasida för kommande träningspass.
+- Verifierade sidan manuellt i webbläsaren mot acceptanskriterierna.
+- Körde `dotnet build`, som gav 0 errors och 0 warnings.
+- Commitade arbetet som `afc55ba Add training class schedule`.
+- Skapade PR #8 "Add training class schedule" och mergade den till `main`.
+- Flyttade storyn till Done i Trello och uppdaterade dokumentationen.
+
+**Vad jag implementerade:**
+
+- **Publik schemasida:** `/Classes/Schedule` kräver ingen inloggning och nås
+  via länken "Schema" i menyn.
+- **Kommande träningspass:** bara pass som inte har startat visas.
+- **Gruppering per datum:** passen grupperas under en rubrik för varje dag.
+- **Sortering:** passen sorteras efter datum och tid.
+- **Innehåll:** varje pass visar tid, titel, plats och instruktör.
+- **Länkar:** passets namn länkar till den befintliga detaljsidan.
+- **Data:** passen hämtas från SQLite via EF Core, med samma fråga för
+  kommande pass som den vanliga träningspasslistan använder.
+
+Manuellt verifierat i webbläsaren:
+
+- Schemasidan gick att öppna utan inloggning.
+- Bara kommande pass visades, grupperade per datum.
+- Två pass samma dag visades under samma datum och i rätt tidsordning.
+- Tid, titel, plats och instruktör visades för varje pass.
+- Passnamnet ledde till rätt detaljsida.
+
+Git:
+
+- Branch `feature/class-schedule`.
+- Commit `afc55ba Add training class schedule`.
+- PR #8 "Add training class schedule", som mergades till `main`.
+
+Trello efter dagens arbete:
+
+- Se träningspass i schema eller kalenderöversikt, Done 4/4.
+- Totalt 12 av 12 stories i Done.
+
+**Beslut:**
+
+- Schemat blev en egen sida i `ClassesController` i stället för en ny
+  controller, eftersom det visar samma data som träningspasslistan.
+- Schemasidan återanvänder den befintliga frågan för kommande pass. Då gäller
+  samma regel för vilka pass som räknas som kommande i både listan och
+  schemat.
+- Jag valde en översikt grupperad per dag i stället för en hel
+  kalenderkomponent. Det uppfyller acceptanskriterierna utan något externt
+  bibliotek.
+- Sidan är publik, precis som träningspasslistan, så att man kan se schemat
+  innan man blir medlem.
+
+**Problem:**
+
+Det aktiva GitHub-kontot var återigen ett annat av mina konton, så repot syntes
+inte från terminalen.
+
+**Lösning:**
+
+Push och pull request gjordes med kontot AlidurBox. Remote-adressen är
+fortfarande inte ändrad, så problemet kan komma tillbaka.
+
+**Reflektion:**
+
+Alla 12 user stories är nu klara och verifierade, och funktionskraven för
+systemet är uppfyllda. Det var bra att testa med två pass samma dag. Med bara
+ett pass per dag hade sorteringen inom en dag inte gått att kontrollera.
+
+**Nästa steg:**
+
+- Aktivitetsdiagram och sekvensdiagram för bokningsflödet.
+- Utvecklingsteamets manifest.
+- Slutlig responsiv kontroll och uppdaterad README inför inlämning.
+- Slutpresentation.
+
+**Bevis att samla in:**
+
+- Trello med 12 av 12 stories i Done.
+- PR #8 före och efter merge.
+- Skärmbild på schemasidan med två pass samma dag.
+
+---
+
+## Datum: 2026-10-16 (fredag)
+
+**Vad jag arbetade med:**
+
+Jag gjorde projektets aktivitetsdiagram och sekvensdiagram. Båda visar flödet
+när en medlem bokar ett träningspass.
+
+- Skapade aktivitetsdiagrammet manuellt i Canva och exporterade det som
+  `AD.png`.
+- Skapade sekvensdiagrammet manuellt i Canva och exporterade det som
+  `SD.png`.
+- Lade till `docs/activity-diagram.md` och `docs/sequence-diagram.md`, som
+  visar diagrammen i repot.
+- Uppdaterade G-checklistan, där kraven på aktivitetsdiagram och
+  sekvensdiagram nu är klara.
+
+**Vad jag implementerade:**
+
+Ingen ny kod i dag. Arbetet var diagram och dokumentation.
+
+**Beslut:**
+
+- Båda diagrammen beskriver bokningsflödet, eftersom det är systemets
+  viktigaste flöde och berör både medlem, inloggning och databas.
+- Diagrammen gjordes manuellt i Canva.
+- Bilderna ligger i `docs/images/` och visas via en egen markdownfil för varje
+  diagram, så att de går att se direkt på GitHub.
+
+**Reflektion:**
+
+Det var lättare att rita diagrammen nu, när bokningsfunktionen redan är byggd
+och testad, eftersom flödet gick att följa i den riktiga koden i stället för
+att gissa.
+
+**Nästa steg:**
+
+- Utvecklingsteamets manifest.
+- Slutlig responsiv kontroll och uppdaterad README inför inlämning.
+- Slutpresentation.
+
+**Bevis att samla in:**
+
+- Aktivitetsdiagrammet och sekvensdiagrammet i repot.
+- G-checklistan med krav 2 och 3 markerade som klara.

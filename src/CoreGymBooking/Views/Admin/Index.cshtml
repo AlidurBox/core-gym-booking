@@ -27,7 +27,7 @@
 else
 {
     <div class="table-responsive">
-        <table class="table">
+        <table class="table admin-table">
             <thead>
                 <tr>
                     <th>Titel</th>
@@ -43,13 +43,13 @@ else
                 @foreach (var trainingClass in Model)
                 {
                     <tr>
-                        <td>@trainingClass.Title</td>
-                        <td>@trainingClass.StartsAt.ToString("d MMMM yyyy, HH:mm", swedishCulture)</td>
-                        <td>@trainingClass.Location</td>
-                        <td>@trainingClass.Instructor</td>
-                        <td>@trainingClass.Bookings.Count av @trainingClass.MaxParticipants</td>
-                        <td>@trainingClass.AvailableSpots</td>
-                        <td>
+                        <td data-label="Titel">@trainingClass.Title</td>
+                        <td data-label="Datum och tid">@trainingClass.StartsAt.ToString("d MMMM yyyy, HH:mm", swedishCulture)</td>
+                        <td data-label="Plats">@trainingClass.Location</td>
+                        <td data-label="Instruktör">@trainingClass.Instructor</td>
+                        <td data-label="Bokade">@trainingClass.Bookings.Count av @trainingClass.MaxParticipants</td>
+                        <td data-label="Lediga platser">@trainingClass.AvailableSpots</td>
+                        <td class="admin-actions">
                             <a class="btn btn-sm btn-outline-primary" asp-controller="Admin" asp-action="Edit" asp-route-id="@trainingClass.Id">Redigera</a>
 
                             <form class="d-inline" asp-controller="Admin" asp-action="Delete" asp-route-id="@trainingClass.Id" method="post"

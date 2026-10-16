@@ -74,13 +74,24 @@ Testerna nedan gäller funktioner som är klara och mergade till `main`.
 
 | Test | Förväntat resultat | Faktiskt resultat | Resultat | Verifierat |
 |---|---|---|---|---|
-| Schemasidan är publik | `/Classes/Schedule` kan öppnas utan inloggning, och länken "Schema" finns i menyn | Sidan öppnades utan inloggning via länken i menyn | Godkänd | 2026-10-15 |
-| Bara kommande pass visas | Pass som redan har startat visas inte | Bara kommande pass visades | Godkänd | 2026-10-15 |
+| Schemasidan är publik | `/Classes/Schedule` kan öppnas utan inloggning, och länken "Schema" finns i menyn | Tekniskt kontrollerat: sidan svarade 200 utan inloggning, och länken finns i menyn i layouten | Godkänd | 2026-10-16 |
+| Bara kommande pass visas | Pass som redan har startat visas inte | Tekniskt kontrollerat i koden: schemat använder samma fråga som filtrerar bort pass som redan har startat | Godkänd | 2026-10-15 |
 | Passen grupperas per datum | Varje dag får en egen rubrik med dagens pass under | Passen visades under rubriken för rätt datum | Godkänd | 2026-10-15 |
 | Två pass samma dag | Båda visas under samma datum, sorterade efter tid | Båda passen visades under samma datum, i rätt tidsordning | Godkänd | 2026-10-15 |
 | Passets uppgifter visas | Tid, titel, plats och instruktör visas | Alla fyra uppgifterna visades | Godkänd | 2026-10-15 |
 | Passnamnet länkar till detaljsidan | Klick på passnamnet öppnar passets detaljsida | Rätt detaljsida öppnades | Godkänd | 2026-10-15 |
-| Schemat bygger på registrerade pass | Passen hämtas från SQLite via EF Core | Schemat visade samma kommande pass som träningspasslistan | Godkänd | 2026-10-15 |
+| Schemat bygger på registrerade pass | Passen hämtas från SQLite via EF Core | Kontrollerat i koden: schemat använder samma EF Core-fråga för kommande pass som träningspasslistan | Godkänd | 2026-10-15 |
+
+## Responsivitet
+
+Mobilanpassningen av adminlistan kom in i `main` via PR #9.
+
+| Test | Förväntat resultat | Faktiskt resultat | Resultat | Verifierat |
+|---|---|---|---|---|
+| Adminlistan i mobilvy, ingen sidscroll | Listan får plats på skärmen utan horisontell scroll | Ingen horisontell sidscroll | Godkänd | 2026-10-16 |
+| Adminlistan i mobilvy, kort | Varje träningspass visas som ett kort | Varje pass visades som ett kort | Godkänd | 2026-10-16 |
+| Adminlistan i mobilvy, knappar | Redigera och Ta bort går att nå | Båda knapparna syntes | Godkänd | 2026-10-16 |
+| Adminlistan på desktop | Tabellen ser ut och fungerar som tidigare | Desktopvyn var oförändrad och fungerade som en vanlig tabell | Godkänd | 2026-10-16 |
 
 ## Teknisk kontroll
 
@@ -88,6 +99,7 @@ Testerna nedan gäller funktioner som är klara och mergade till `main`.
 |---|---|---|---|---|
 | `dotnet build` | Projektet bygger | 0 errors och 0 warnings | Godkänd | 2026-10-14 |
 | `dotnet build` med schemasidan | Projektet bygger | 0 errors och 0 warnings | Godkänd | 2026-10-15 |
+| `dotnet build` med mobilanpassad adminlista (PR #9) | Projektet bygger | 0 errors och 0 warnings | Godkänd | 2026-10-16 |
 
 ## Tester som återstår senare
 

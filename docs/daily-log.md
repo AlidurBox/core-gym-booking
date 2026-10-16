@@ -744,9 +744,24 @@ när en medlem bokar ett träningspass.
 - Uppdaterade G-checklistan, där kraven på aktivitetsdiagram och
   sekvensdiagram nu är klara.
 
+Senare under dagen:
+
+- Upptäckte att adminlistan inte fungerade på mobil, och gjorde den
+  mobilanpassad på branchen `feature/admin-mobile-responsive`.
+- Commitade ändringen som `9206455 Improve admin mobile layout` och skapade
+  PR #9.
+- Testade adminlistan manuellt i mobilvy och på desktop, och mergade sedan
+  PR #9 till `main`.
+- Gick igenom alla G-krav mot Git-historiken och dokumentationen.
+- Uppdaterade README så att den beskriver det färdiga systemet.
+- Skapade `docs/team-manifest.md`, `docs/decisions.md` och `docs/mvp-plan.md`.
+
 **Vad jag implementerade:**
 
-Ingen ny kod i dag. Arbetet var diagram och dokumentation.
+Diagrammen och dokumentationen ovan, och en mobilanpassad adminlista. På
+skärmar under 768px visas varje träningspass som ett kort i stället för en
+tabellrad. Desktoptabellen och funktionerna för att redigera och ta bort är
+oförändrade. `dotnet build` gav 0 errors och 0 warnings.
 
 **Beslut:**
 
@@ -755,6 +770,41 @@ Ingen ny kod i dag. Arbetet var diagram och dokumentation.
 - Diagrammen gjordes manuellt i Canva.
 - Bilderna ligger i `docs/images/` och visas via en egen markdownfil för varje
   diagram, så att de går att se direkt på GitHub.
+- Adminlistan visas som kort på mobil i stället för en tabell som går att
+  scrolla i sidled, eftersom det inte syntes att tabellen gick att scrolla.
+- I MVP-dokumentationen tar jag bara med leveranser som kan visas med commits
+  och pull requests.
+
+**Problem:**
+
+På mobil gick tabellen på sidan "Administrera träningspass" utanför skärmen,
+och kolumnerna till höger syntes inte.
+
+**Lösning:**
+
+Tabellen låg redan i Bootstraps `table-responsive`, men det syntes inte att den
+gick att scrolla. Under 768px visas därför varje rad som ett kort med etikett
+och värde, med hjälp av CSS. Ändringen ligger i PR #9.
+
+Manuellt verifierat 2026-10-16:
+
+- Adminlistan fungerar i mobilvy utan horisontell sidscroll.
+- Varje träningspass visas som ett kort.
+- Knapparna Redigera och Ta bort syns.
+- Desktopvyn är oförändrad och fungerar som en vanlig tabell.
+
+Därefter mergades PR #9 till `main`.
+
+**Korrigering av inlägget 2026-10-15:**
+
+Inlägget för 2026-10-15 räknar upp mer som manuellt verifierat än vad som
+faktiskt testades i webbläsaren.
+
+- Manuellt verifierat: schemasidan visar passen grupperade per datum, två pass
+  samma dag visas i rätt tidsordning, och passnamnet leder till detaljsidan.
+- Tekniskt verifierat, inte manuellt: att sidan går att öppna utan inloggning
+  (anrop utan inloggning gav svar 200, 2026-10-16) och att bara kommande pass
+  visas (kontrollerat i koden).
 
 **Reflektion:**
 
@@ -764,11 +814,13 @@ att gissa.
 
 **Nästa steg:**
 
-- Utvecklingsteamets manifest.
-- Slutlig responsiv kontroll och uppdaterad README inför inlämning.
+- Ta screenshots av Trello, GitHub och appen.
+- Sammanställa inlämningsdokumentet.
 - Slutpresentation.
 
 **Bevis att samla in:**
 
 - Aktivitetsdiagrammet och sekvensdiagrammet i repot.
-- G-checklistan med krav 2 och 3 markerade som klara.
+- G-checklistan efter genomgången av alla krav.
+- PR #9 före och efter merge.
+- Adminlistan på mobil och på desktop.
